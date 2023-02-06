@@ -19,6 +19,7 @@ function App() {
   // 새로운 입력 값
   const [newTodos, setNewTodos] = useState('');
 
+  // input 할 일 입력
   const onChange = (e) => {
     setTodoValue(e.target.value);
   };
@@ -26,12 +27,29 @@ function App() {
   // input 작성되면, newTodo값을 변경해줌.
   useEffect(() => setNewTodos(''), [todoValue]);
 
+  // form 동작 (입력마다 배열로 set에 저장)
   const onSubmit = (e) => {
     e.preventDefault();
     setNewTodos(todoValue);
     setTodos([...todos, todoValue]);
     setTodoValue('');
   };
+
+  // 저장 값 전체 삭제
+  const allDelete = () => {
+    window.localStorage.clear();
+    window.location.reload();
+  };
+
+  // 개개인 삭제버튼 (현재 clear처럼 작동 중)
+  // 개인적으론 생성할 때 key, value + className[i]를 같이 받아와서 삭제 해야할듯.
+  function deleteBt(item) {
+    const removeItem = todos.filter((todos) => {
+      return todos.value !== item;
+    });
+    setTodos(removeItem);
+    console.log(todos.value[item]);
+  }
 
   //인풋에 todo값들을 입력할 때마다, localStorage에 저장한다.
   useEffect(() => {
@@ -52,9 +70,19 @@ function App() {
           />
           <AddButton>추가</AddButton>
         </Form>
+        <AllClear type="button" onClick={allDelete}>
+          전체삭제
+        </AllClear>
         <Ul>
           {todos.map((item, index) => (
-            <List key={index}>{item}</List>
+            <>
+              <List key={index}>
+                {item}{' '}
+                <button onClick={() => deleteBt(todos.value[item])}>
+                  삭제
+                </button>
+              </List>
+            </>
           ))}
         </Ul>
       </Container>
@@ -139,6 +167,18 @@ const AddButton = styled.button`
   align-items: center;
   cursor: pointer;
 `;
+const AllClear = styled.button`
+  background: none;
+  outline: none;
+  border: none;
+  color: #f67280;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
@@ -150,7 +190,7 @@ const List = styled.li`
   margin: 0 auto;
   margin-top: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   z-index: 990;
