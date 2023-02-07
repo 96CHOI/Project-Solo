@@ -6,8 +6,8 @@ function App() {
   // input 입력값
   const [todoValue, setTodoValue] = useState('');
   // 저장 공간 (콜백 함수) 다시한번 봐야함
-  const [todos, setTodos] = useState(() => {
-    if (typeof window !== 'undefined') {
+  const [todos, setTodos] = useState((id) => {
+    if (window !== '') {
       const saved = window.localStorage.getItem('todoList');
       if (saved !== null) {
         return JSON.parse(saved);
@@ -16,6 +16,7 @@ function App() {
       }
     }
   });
+
   // 새로운 입력 값
   const [newTodos, setNewTodos] = useState('');
 
@@ -30,6 +31,7 @@ function App() {
   // form 동작 (입력마다 배열로 set에 저장)
   const onSubmit = (e) => {
     e.preventDefault();
+
     setNewTodos(todoValue);
     setTodos([...todos, todoValue]);
     setTodoValue('');
@@ -37,23 +39,30 @@ function App() {
 
   // 저장 값 전체 삭제
   const allDelete = () => {
-    window.localStorage.clear();
+    window.localStorage.clear([]);
     window.location.reload();
   };
 
+  // map으로 저장된 값 표현하기
+  const todosMap = todos.map((item, index) => (
+    <List key={index}>
+      {item}
+      <RemoveBt onClick={() => deleteBt(todos[index])}>삭제</RemoveBt>
+    </List>
+  ));
+
   // 개개인 삭제버튼 (현재 clear처럼 작동 중)
   // 개인적으론 생성할 때 key, value + className[i]를 같이 받아와서 삭제 해야할듯.
-  function deleteBt(item) {
-    const removeItem = todos.filter((todos) => {
-      return todos.value !== item;
-    });
+  const deleteBt = (index) => {
+    let removeItem = todos.filter((el) => el !== index);
+
+    // console.log(removeItem);
     setTodos(removeItem);
-    console.log(todos.value[item]);
-  }
+  };
 
   //인풋에 todo값들을 입력할 때마다, localStorage에 저장한다.
   useEffect(() => {
-    window.localStorage.setItem('todoList', JSON.stringify(todos));
+    localStorage.setItem('todoList', JSON.stringify(todos));
   }, [todos]);
 
   return (
@@ -69,22 +78,12 @@ function App() {
             required
           />
           <AddButton>추가</AddButton>
+          <AllClear type="button" onClick={allDelete}>
+            전체삭제
+          </AllClear>
         </Form>
-        <AllClear type="button" onClick={allDelete}>
-          전체삭제
-        </AllClear>
-        <Ul>
-          {todos.map((item, index) => (
-            <>
-              <List key={index}>
-                {item}{' '}
-                <button onClick={() => deleteBt(todos.value[item])}>
-                  삭제
-                </button>
-              </List>
-            </>
-          ))}
-        </Ul>
+
+        <Ul className="todosMap">{todosMap}</Ul>
       </Container>
     </>
   );
@@ -102,7 +101,8 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(244, 222, 222, 0.4);
+    /* background-color: rgba(244, 222, 222, 0.4); */
+    background-color: #38393E;
   }
 `;
 
@@ -200,6 +200,18 @@ const List = styled.li`
   box-shadow: 1px 2px 5px 1px #f67280;
   cursor: pointer;
   background-color: white;
+`;
+const RemoveBt = styled.button`
+  background: none;
+  outline: none;
+  border: none;
+  color: #f67280;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export default App;
