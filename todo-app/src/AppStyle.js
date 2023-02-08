@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
   body {
     font-family: "Helvetica", "Arial", sans-serif;
     display: flex;
@@ -30,6 +31,7 @@ const Container = styled.div`
   font-weight: bold;
   color: #6c567b;
 `;
+
 const Title = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,6 +45,7 @@ const Title = styled.div`
   font-weight: bold;
   color: #6c567b;
 `;
+
 const Form = styled.form`
   display: flex;
   flex-direction: row;
@@ -57,6 +60,7 @@ const Form = styled.form`
   font-weight: bold;
   color: #6c567b;
 `;
+
 const Input = styled.input`
   background: none;
   outline: none;
@@ -68,6 +72,7 @@ const Input = styled.input`
   text-align: center;
   cursor: pointer;
 `;
+
 const AddButton = styled.button`
   background: none;
   outline: none;
@@ -80,6 +85,7 @@ const AddButton = styled.button`
   align-items: center;
   cursor: pointer;
 `;
+
 const AllClear = styled.button`
   background: none;
   outline: none;
@@ -92,6 +98,7 @@ const AllClear = styled.button`
   align-items: center;
   cursor: pointer;
 `;
+
 const Ul = styled.ul`
   display: flex;
   flex-direction: column;
@@ -99,6 +106,7 @@ const Ul = styled.ul`
   width: 50vw;
   height: 70vh;
 `;
+
 const List = styled.li`
   margin: 0 auto;
   margin-top: 20px;
@@ -116,6 +124,7 @@ const List = styled.li`
   cursor: pointer;
   background-color: white;
 `;
+
 const RemoveBt = styled.button`
   background: none;
   outline: none;
