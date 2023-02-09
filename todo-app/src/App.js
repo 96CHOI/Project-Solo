@@ -20,30 +20,6 @@ import {
 const App = () => {
   const [todoValue, setTodoValue] = useState(''); // input 입력값
   const [todos, setTodos] = useState([]); // 전체 할 일 저장될 배열
-  // const [newTodos, setNewTodos] = useState(''); // 새로운 입력 값
-
-  // 저장 공간 (콜백 함수) 다시한번 봐야함
-  // const [todos, setTodos] = useState((id) => {
-  //   if (window !== '') {
-  //     // component 가 마운트가 되었다면 componentDidMount
-  //     const saved = window.localStorage.getItem('todoList');
-  //     if (saved) {
-  //       return JSON.parse(saved);
-  //     } else {
-  //       return [];
-  //     }
-  //   }
-  // });
-
-  // 마운트 되었을 때 딱 한 번
-  useEffect(() => {
-    const saved = localStorage.getItem('todoList');
-
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      setTodos(parsed);
-    }
-  }, []);
 
   // feat: input 할 일 입력
   const onChange = (e) => {
@@ -53,38 +29,36 @@ const App = () => {
   // feat: form 동작 (입력마다 배열로 set에 저장)
   const onSubmit = (e) => {
     e.preventDefault();
-
-    // setNewTodos(todoValue);
     setTodos([...todos, todoValue]);
     setTodoValue('');
   };
 
+  // feat: 마운트 되었을 때 한 번 실행 (value에 입력된 할 일 데이터를 localstorage에 저장)
   useEffect(() => {
     localStorage.setItem('todoList', JSON.stringify(todos));
   }, [todos]);
 
-  // input 작성되면, newTodo값을 변경해줌.
-  // useEffect(() => setNewTodos(''), [todoValue]);
+  // feat: 마운트 되었을 때 딱 한 번만 실행됨.( 저장된 데이터 가져오기)
+  useEffect(() => {
+    const saved = localStorage.getItem('todoList');
 
-  // 저장 값 전체 삭제
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setTodos(parsed);
+    }
+  }, []);
+
+  // feat : localstorage에 저장된 값 전체 삭제
   const allDelete = () => {
     localStorage.clear();
-    // window.location.reload();
     setTodos([]);
   };
 
-  // 개별 삭제버튼
+  // feat: 개별 목록에 저장된 할 일앱 1개씩 삭제
   const deleteBt = (index) => {
     let removeItem = todos.filter((el) => el !== index);
-
-    // console.log(removeItem);
     setTodos(removeItem);
   };
-
-  //인풋에 todo값들을 입력할 때마다, localStorage에 저장한다.
-  // useEffect(() => {
-  //   localStorage.setItem('todoList', JSON.stringify(todos));
-  // }, [todos]);
 
   return (
     <>
