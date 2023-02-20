@@ -4,11 +4,11 @@ import {
   Container,
   Header,
   Logo,
-  Menu,
-  Ul,
-  Li,
+  Search,
+  Input,
 } from './MainStyle';
 import imgLogo from './img/Logo.png';
+import { IoSearch } from 'react-icons/io5';
 
 const App = () => {
   return (
@@ -17,13 +17,10 @@ const App = () => {
       <Container>
         <Header>
           <Logo src={imgLogo}></Logo>
-          <Menu>
-            <Ul>
-              <Li>홈</Li>
-              <Li>국내</Li>
-              <Li>해외</Li>
-            </Ul>
-          </Menu>
+          <Search>
+            <Input />
+            <IoSearch />
+          </Search>
         </Header>
       </Container>
     </>

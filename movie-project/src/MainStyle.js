@@ -54,34 +54,26 @@ const Header = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 200px;
-  height: 100px;
-`;
-
-const Menu = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 15vw;
-  height: 100px;
-  background-color: skyblue;
-`;
-
-const Ul = styled.ul`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  width: 10vw;
   height: 100%;
 `;
 
-const Li = styled.li`
+const Search = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
-  cursor: pointer;
+  width: 90vw;
+  height: 100%;
 `;
 
-export { GlobalStyle, Container, Header, Logo, Menu, Ul, Li };
+const Input = styled.input`
+  display: flex;
+  margin-right: 10px;
+  height: 25%;
+  border: 0;
+  border-bottom: 1px solid black;
+  background-color: lightblue;
+`;
+
+export { GlobalStyle, Container, Header, Logo, Search, Input };
