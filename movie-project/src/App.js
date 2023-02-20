@@ -6,9 +6,10 @@ import {
   Logo,
   Search,
   Input,
+  SearchIcon,
+  HeaderGroup,
 } from './MainStyle';
 import imgLogo from './img/Logo.png';
-import { IoSearch } from 'react-icons/io5';
 
 const App = () => {
   return (
@@ -16,11 +17,13 @@ const App = () => {
       <GlobalStyle />
       <Container>
         <Header>
-          <Logo src={imgLogo}></Logo>
-          <Search>
-            <Input />
-            <IoSearch />
-          </Search>
+          <HeaderGroup>
+            <Logo src={imgLogo}></Logo>
+            <Search>
+              <Input />
+              <SearchIcon />
+            </Search>
+          </HeaderGroup>
         </Header>
       </Container>
     </>

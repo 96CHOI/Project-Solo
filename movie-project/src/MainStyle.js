@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import { IoSearch } from 'react-icons/io5';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -14,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     //background-color: rgba(244, 222, 222, 0.4);
-    background-color: lightblue;
+    background-color: rgb(30,31,33);
     /* background-color: #38393E; */
   }
 
@@ -49,6 +50,15 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: rgb(41, 42, 45);
+`;
+
+const HeaderGroup = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 70vw;
   height: 10vh;
 `;
@@ -56,6 +66,7 @@ const Header = styled.div`
 const Logo = styled.img`
   width: 10vw;
   height: 100%;
+  cursor: pointer;
 `;
 
 const Search = styled.div`
@@ -72,8 +83,32 @@ const Input = styled.input`
   margin-right: 10px;
   height: 25%;
   border: 0;
-  border-bottom: 1px solid black;
-  background-color: lightblue;
+  border-bottom: 1px solid white;
+  background-color: rgb(41, 42, 45);
+  text-align: center;
+  font-size: 1rem;
+  color: white;
 `;
 
-export { GlobalStyle, Container, Header, Logo, Search, Input };
+const SearchIcon = styled(IoSearch)`
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 20px 10px 20px;
+  color: red;
+  cursor: pointer;
+`;
+
+export {
+  GlobalStyle,
+  Container,
+  Header,
+  HeaderGroup,
+  Logo,
+  Search,
+  Input,
+  SearchIcon,
+};
