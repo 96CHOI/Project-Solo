@@ -66,8 +66,8 @@ const HeaderGroup = styled.div`
 const Logo = styled.img.attrs({
   src: `${imgLogo}`,
 })`
-  width: 10vw;
-  height: 100%;
+  width: 200px;
+  height: 100px;
   cursor: pointer;
 `;
 
