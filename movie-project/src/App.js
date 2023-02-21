@@ -9,7 +9,6 @@ import {
   SearchIcon,
   HeaderGroup,
 } from './MainStyle';
-import imgLogo from './img/Logo.png';
 
 const App = () => {
   return (
@@ -18,7 +17,7 @@ const App = () => {
       <Container>
         <Header>
           <HeaderGroup>
-            <Logo src={imgLogo}></Logo>
+            <Logo />
             <Search>
               <Input />
               <SearchIcon />

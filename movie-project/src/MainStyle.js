@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 import { IoSearch } from 'react-icons/io5';
+import imgLogo from './img/Logo.png';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -43,7 +44,6 @@ const Container = styled.div`
   row-gap: 1em;
   font-size: 1.5rem;
   font-weight: bold;
-  //color: #6c567b;
   color: hotpink;
 `;
 
@@ -63,7 +63,9 @@ const HeaderGroup = styled.div`
   height: 10vh;
 `;
 
-const Logo = styled.img`
+const Logo = styled.img.attrs({
+  src: `${imgLogo}`,
+})`
   width: 10vw;
   height: 100%;
   cursor: pointer;
